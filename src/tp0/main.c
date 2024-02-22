@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 
     // Add a breakpoint (red dot) at line 15 of this file!
     int a = 1;
+    a = 2;
     a = a + 1;             // Just here! Open the debug console, and type "a" ("?a" for MacOS) and enter! Then, hit "step-over"
     printf("a = %d\n", a); // Type "a" ("?a" for MacOS) and enter again, what's its value now?
 
