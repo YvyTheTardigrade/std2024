@@ -16,9 +16,9 @@ typedef struct tree
 } Tree;
 
 Tree *tree_create();
-TreeNode *tree_search(Tree *tree, void *data, int (*cmp)(void *, void *));
+TreeNode *tree_search(Tree *tree, void *data, int (*cmp)(void *, void *)); //
 void tree_destroy(Tree *tree);
-void tree_insert(Tree *tree, void *data, int (*cmp)(void *, void *));
+void tree_insert(Tree *tree, void *data, int (*cmp)(void *, void *)); // pointeur sur fct qui dit dans quelle branche aller 
 List *tree_bfs(Tree *tree);
 List *tree_dfs(Tree *tree);
 

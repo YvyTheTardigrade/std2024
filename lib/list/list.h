@@ -3,12 +3,18 @@
 
 typedef struct listNode
 {
-    // TODO: Implement
+    void* data;
+    struct listNode* next;
+    struct listNode* previous;
+
 } ListNode;
 
 typedef struct list
 {
-    // TODO: Implement
+    int size;
+    ListNode* FirstNode;
+    ListNode* LastNode;
+    
 } List;
 
 List *list_create();
