@@ -134,6 +134,7 @@ void list_insert(List *list, int index, void *data){
 
     list->size ++;
     return;
+    
 }
 
 int list_indexOf(List *list, void *data){
