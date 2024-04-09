@@ -7,19 +7,20 @@
 
 typedef struct treeNode
 {
-    // TODO: Implement
+    void* data;
+    List childrens;
 } TreeNode;
 
 typedef struct tree
 {
-    // TODO: Implement
+    TreeNode* root;
 } Tree;
 
 Tree *tree_create();
 TreeNode *tree_search(Tree *tree, void *data, int (*cmp)(void *, void *)); //
 void tree_destroy(Tree *tree);
 void tree_insert(Tree *tree, void *data, int (*cmp)(void *, void *)); // pointeur sur fct qui dit dans quelle branche aller 
-List *tree_bfs(Tree *tree);
-List *tree_dfs(Tree *tree);
+List *tree_bfs(Tree *tree);// en largeur : on finit un niveau avant de passer au niveau supérieur en parcourant de gauche a droite
+List *tree_dfs(Tree *tree);// en profondeur : on parcour au max la branche de gauche puis on re descent petit a petit jusqu'à la racine pour faire l'arbre droit
 
 #endif
