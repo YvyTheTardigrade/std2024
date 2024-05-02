@@ -20,7 +20,7 @@ void *list_get(List *list, int index){
     // |---------------|---|
     // ---------|-|
     int len = list->size;
-    if((index > len) || (index < 0)){
+    if((index >= len) || (index < 0)){
         printf("the given index %d is unreachable\n", index);
         return NULL;
     }
@@ -37,9 +37,14 @@ void *list_get(List *list, int index){
         for(int i = 0; i<index; i++){
             get_ptr = get_ptr->next;
         }
-        return get_ptr->data;
+        if (get_ptr->data == NULL){
+            return NULL;
+        }else{
+            return get_ptr->data;
+        }
     }
-}
+}// get_ptr est un ptr vers un endroit interdit ET lastnode est sur le meme que firstnode alors que il y a un autre indice
+// il pointe sur indice 1 des enfant de root
 
 int list_contains(List *list, void *data){
     ListNode* to_test_ptr = list->FirstNode;
@@ -153,13 +158,13 @@ int list_indexOf(List *list, void *data){
 
 void list_delete(List *list, int index){
     int len = list->size;
-
+    
     // tester si l'indice est correct
     if((index >= len) || (index < 0)){
         printf("the given index %d is unreachable\n", index);
         return;
     }
-
+    
     ListNode* to_kill = NULL;
 
     if(index == len-1){
@@ -171,7 +176,7 @@ void list_delete(List *list, int index){
             list->FirstNode = NULL;
         }
         
-
+        if(to_kill == NULL){return;}
         free(to_kill);
 
         (list->size)--;
@@ -181,7 +186,7 @@ void list_delete(List *list, int index){
         to_kill = list->FirstNode;
         list->FirstNode = to_kill->next;
         to_kill->next->previous = NULL;
-
+        if(to_kill == NULL){return;}
         free(to_kill);
 
         (list->size)--;
@@ -208,7 +213,7 @@ void list_delete(List *list, int index){
 
     to_kill->previous->next = to_kill->next;
     to_kill->next->previous = to_kill->previous;
-
+    if(to_kill == NULL){return;}
     free(to_kill);
 
     (list->size)--;
@@ -222,4 +227,13 @@ void list_destroy(List *list){
         list_delete(list, i);
     }
     free(list);
+}
+
+void list_set(List *list, void* data, int index){
+    if (index>(list->size-1) || index < 0){return;}
+    ListNode* current = list->FirstNode;
+    for(int i = 0; i<index; i++){
+        current = current->next;
+    }
+    current->data = data;
 }

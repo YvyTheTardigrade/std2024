@@ -20,6 +20,7 @@ typedef struct list
 List *list_create();
 int list_size(List *list);
 void *list_get(List *list, int index);
+void list_set(List *list,void* data, int index);
 int list_contains(List *list, void *data);
 void list_append(List *list, void *data);
 void list_insert(List *list, int index, void *data);
