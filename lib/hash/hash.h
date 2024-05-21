@@ -9,7 +9,10 @@ unsigned long int hashFunction(void *key);
 // Hash table
 typedef struct hashTable
 {
-    // TODO: Implement
+    unsigned long int (*hashFunction)(void *);
+    void** HT;
+    int size;
+
 } HashTable;
 
 HashTable *hashCreate(int size, unsigned long int (*hashFunction)(void *));
@@ -23,8 +26,12 @@ int hash_size(HashTable *table);
 
 // Hash table with external chaining
 typedef struct hashTableChain
-{
-    // TODO: Implement
+{   
+    unsigned long int (*hashFunction)(void *);
+    List** HT;
+    List** keys;
+    int size;
+
 } HashTableChain;
 
 HashTableChain *hashChainCreate(int size, unsigned long int (*hashFunction)(void *));
